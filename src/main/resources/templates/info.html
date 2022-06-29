@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <H1><center>UserInfo</center></H1>
+</head>
+<body>
+<br>
+<div>
+    <style>
+        table {
+            width: 550px;
+            border: 1px solid green;
+            margin: auto;
+        }
+        td {
+            text-align: center;
+        }
+    </style>
+    <table border="1" cellspacing="0" cellpadding="12" width="500">
+        <tr>
+            <th >id</th>
+            <th >username</th>
+            <th >email</th>
+            <th >roles</th>
+
+        <tr th:each="user:${user}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.getRoles}"></td>
+        </tr>
+    </table>
+    <br>
+</div>
+<H3><center><p><a href="/logout">Logout</a></p></center></H3>
+    <br>
+</body>
+</html>

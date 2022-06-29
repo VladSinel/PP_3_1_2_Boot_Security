@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Security Example</title>
+    <style>
+        .text {
+            text-align:  center;
+        }
+        button {
+            width: 10%;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="text">
+<h1>Welcome to HOME PAGE!</h1>
+<br>
+<h1>Sign in to continue</h1>
+<br>
+        <a th:href="@{/login}"><h3>SIGN IN</h3></a>
+    <br>
+    <a th:href="@{/logout}"><h3>Logout</h3></a>
+</div>
+</body>
+</html>

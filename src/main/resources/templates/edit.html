@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Security Example</title>
+    <h1><center>Edit User</center></h1>
+</head>
+<body>
+<div align="center">
+    <form th:method="PATCH" th:action="@{/admin}" th:object="${user}">
+        <table border="1" cellspacing="0" cellpadding="12" width="550">
+            <tr>
+                <td>ID:</td>
+                <td><input type="number" th:field="${user.id}" readonly/></td>
+            </tr>
+            <tr>
+                <td>username:</td>
+                <td><input type="text" th:field="${user.name}"/></td>
+            </tr>
+            <tr>
+                <td>email:</td>
+                <td><input type="text" th:field="${user.email}"/></td>
+            </tr>
+            <tr>
+                <td><label>password</label></td>
+                <td><input type="password" name="password" /></td>
+            </tr>
+            <tr>
+
+                <label>
+                    <select size="3" name="role" id="roles" multiple="multiple">
+                        <option disabled>Roles:</option>
+                        <option value="1">ADMIN</option>
+                        <option selected value="2">USER</option>
+                    </select>
+                </label>
+            </tr>
+            <tr>
+               <td colspan="2"> <center><input type="submit" value="Update"></center></td>
+            </tr>
+            <br>
+            <td><button> <a th:href="@{/remove/{id}(id=${user.id})}">Delete USER</a></button></td>
+            <br>
+        </table>
+    </form>
+    <br>
+    <td>
+        <a th:href="@{/admin/users}">GO BACK</a>
+    </td>
+    <br>
+    <H3><center><p><a href="/logout">Logout</a></p></center></H3>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<div>
+    <h2>Create new USER</h2>
+    <form th:method="POST" th:action="@{/user}" th:object="${newUser}">
+        <label for="name">Enter name: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+        <br><br/>
+        <label for="email">Enter email: </label>
+        <input type="text" th:field="*{email}" id="email"/>
+        <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+        <br><br/>
+        <label for="password">Enter password: </label>
+        <input type="text" th:field="*{password}" id="password"/>
+        <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">pass Error</div>
+        <br><br/>
+        <tr>
+
+            <label>
+                <select size="3" name="role" id="roles" multiple="multiple">
+                    <option disabled>Roles:</option>
+                    <option value="1">ADMIN</option>
+                    <option selected value="2">USER</option>
+                </select>
+            </label>
+        </tr>
+        <br>
+        <br>
+        <tr>
+            <td colspan="2"><input type="submit" value="New User"></td>
+        </tr>
+    </form>
+</div>
+<br>
+<div>
+    <H1><center>UsersList</center></H1>
+    <style>
+        table {
+            width: 550px;
+            border: 1px solid green;
+            margin: auto;
+        }
+        td {
+            text-align: center;
+        }
+    </style>
+    <table border="1" cellspacing="0" cellpadding="12" width="550">
+        <tr>
+            <th >id</th>
+            <th >username</th>
+            <th >email</th>
+            <th >roles</th>
+            <th >edit user</th>
+            <th >delete user</th>
+        </tr>
+
+        <tr th:each="user:${listUsers}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${#strings.setJoin(user.getAuthorities,  ', ')}">...</td>
+        <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+        <td><a th:href="@{/remove/{id}(id=${user.id})}">Delete</a></td>
+        </tr>
+    </table>
+    <br>
+</div>
+<H3><center><p><a href="/logout">Logout</a></p></center></H3>
+<br>
+</body>
+</html>
