@@ -18,6 +18,9 @@ public class Role implements GrantedAuthority {
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
 
+    public Role() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -34,6 +37,14 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
+    public Collection<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<User> users) {
+        this.users = users;
+    }
+
     @Override
     public String getAuthority() {
         return name;
@@ -43,4 +54,22 @@ public class Role implements GrantedAuthority {
     public String toString() {
         return  name = name.substring(5);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Role role = (Role) o;
+
+        return id.equals(role.id) && name.equals(role.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        return result;
+    }
+
 }

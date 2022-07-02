@@ -31,7 +31,7 @@ public class User implements UserDetails {
     @Column(name = "email",  unique = true)
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
@@ -40,6 +40,9 @@ public class User implements UserDetails {
                     name = "role_id", referencedColumnName = "id")
     )
     private Set<Role> roles;
+
+    public User() {
+    }
 
     public Long getId() {
         return id;
@@ -123,4 +126,25 @@ public class User implements UserDetails {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (!id.equals(user.id)) return false;
+        if (!name.equals(user.name)) return false;
+        if (!password.equals(user.password)) return false;
+        return email.equals(user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + email.hashCode();
+        return result;
+    }
 }

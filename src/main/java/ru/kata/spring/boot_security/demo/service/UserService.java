@@ -1,8 +1,8 @@
 package ru.kata.spring.boot_security.demo.service;
 
+
 import ru.kata.spring.boot_security.demo.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface UserService {
@@ -14,4 +14,5 @@ public interface UserService {
     void deleteById(Long id);
 
     void save(User user);
+
 }
